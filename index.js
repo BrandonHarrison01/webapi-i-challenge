@@ -39,6 +39,18 @@ server.post('/api/users', (req, res) => {
         })
 })
 
+server.get('/api/users/:id', (req, res) => {
+    const userId = req.params.id
+
+    userData.findById(userId)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(error => {
+            res.status(500).json({ error: "The users information could not be retrieved." })
+        })
+})
+
 server.delete('/api/users/:id', (req, res) => {
     const userId = req.params.id;
 
